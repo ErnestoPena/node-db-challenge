@@ -27,7 +27,7 @@ exports.up = function(knex) {
       tbl.integer('project_id')
          .notNullable()
          .references('id')
-         .inTable('project')
+         .inTable('projects')
          .onDelete('RESTRICT')
          .onUpdate('CASCADE');
       tbl.integer('resource_id')
@@ -40,5 +40,8 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  
+  knex.schema.dropTableIfExists('projects')
+             .dropTableIfExists('tasks')
+             .dropTableIfExists('resources')
+             .dropTableIfExists('resourcesbyprojects')
 };

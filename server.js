@@ -4,9 +4,9 @@ const port = 7000;
 
 server.use(express.json());
 
-const projectRouter = require('./projects/projectsRouter');
-const resourcesRouter = require('./resources/resourcesRouter');
-const tasksRouter = require('./tasks/tasksRouter');
+const projectRouter = require('./api/projectsRouter');
+const resourcesRouter = require('./api/resourcesRouter');
+const tasksRouter = require('./api/tasksRouter');
 
 server.use('/projects' , projectRouter);
 server.use('/resources' , resourcesRouter);
