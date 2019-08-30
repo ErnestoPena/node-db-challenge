@@ -25,7 +25,7 @@ tasksRouter.post('/' , async (req,res) => {
         res.status(200).json(newProject);
     }
     catch (err) {
-        res.status(500).json({message:' There was a problem with your request'})
+        res.status(500).json('there was a problem with your request', err.message)
 
     }
 })
