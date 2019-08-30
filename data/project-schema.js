@@ -8,7 +8,7 @@ module.exports = {
 }
 
 function find() {
-    return DB('projects');
+    return DB('projects')
 }
 
 function add(item) {

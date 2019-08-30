@@ -4,7 +4,7 @@ const DB = require('../data/db-config');
 module.exports = {
  find,
  add,
- findById
+ findByIdNested
 }
 
 function find() {
@@ -15,7 +15,14 @@ function add(item) {
     return DB('resources').insert(item);
 }
 
-function findById(id) {
-    return DB('resourcesbyprojects as RP').join('resources as R' , 'R.id' , 'RP.resource_id')
-                                          .where('RP.project_id' , '=' , id);
+// function findByIdNested(id) {
+//     return DB('projects as P').leftJoin('tasks as T' , 'P.id' , 'T.project_id' )
+//                                           .where('P.id' , '=' , id);
+// }
+
+function findByIdNested(id) {
+         return DB.select('*').from(function() {
+                                        this.select('*').from('projects').where('projects.id' , id)
+                                    })
+                                    .join('tasks' , 'tasks.project_id' , id)
 }
